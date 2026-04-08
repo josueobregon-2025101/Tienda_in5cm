@@ -1,0 +1,94 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    height: 100vh;
+    background-color: #EFEFEF;
+    display: flex;
+}
+aside{
+    background-color: #08a045;
+    color: #fff;
+    float: left;
+    width: 20%;
+    height: 100vh;
+    display: block;
+}
+
+.logo{
+    margin: 0;
+    padding: 0%;
+    height: auto;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+aside ul{
+list-style-type: none;
+padding: 0;
+}
+aside ul li{
+    list-style-type:none;
+    padding: 0%;
+    margin:4px 0 4px 50px ;
+}
+aside ul li a{   
+    text-decoration: none; 
+    color: #fff;
+
+}
+.logout{
+    width: 5%;
+    height: auto;
+    background-repeat: no-repeat;
+    
+
+}
+.imgContainer{
+    bottom: 10%;
+    left: 20px;
+ position: absolute;
+}
+aside button{
+    background-color: #08a045;
+    border: none;
+    bottom: 11%;
+    left: 48px;
+    position: absolute;
+}
+
+header{
+    margin: 0;
+    padding: 4%;
+    background-color: #fff;
+    width: 100%;
+    height: 7%;
+    display: flex;
+}
+header p{
+    font-size: large;
+    font-family:   sans-serif;
+}
+header ul{
+    list-style-type: none;
+    right: 7%;
+    position: absolute;
+    margin:0;
+}
+.userContainer{
+   right: 9%;
+    position: absolute;
+    margin:0;
+    padding: 0%;
+    width: auto;
+}
+.userContainer img {
+    width: 20px;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+.arrow{
+    width: 20px;
+    height: auto;
+    background-repeat: no-repeat;
+}
