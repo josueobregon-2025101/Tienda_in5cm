@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="../Styles/Style-Index.css">
+    <link rel="stylesheet" th:href="@{/Styles/Style-Index.css}">
 </head>
 <body>
     <aside>
-        <img src="../img/logo.png" alt="logo" class="logo">
+        <img th:src="@{/img/logo.png}" alt="logo" class="logo">
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a th:href="@{/Index}">Inicio</a></li>
             <li><a href="#">Clientes</a></li>
-            <li><a href="../Pages/Ventas.html">Ventas</a></li>
+            <li><a href="#">Ventas</a></li>
             <li><a href="#">Productos</a></li>
             <li><a href="#">Usuarios</a></li>
             <li><a href="#">Detalle venta</a></li>
         </ul>
-        <a href="Login.html">
+        <a th:href="@{/}">
             <div class="imgContainer">
-                <img src="../img/logout.png" alt="logout" class="logout">
+                <img th:src="@{/img/logout.png}" alt="logout" class="logout">
             </div>
             <button>Cerrar Sesión</button>
         </a>
@@ -27,11 +27,11 @@
     <header>
         <p>Menú</p>
         <div class="userContainer">
-            <img src="../img/user.png" alt="">
+            <img th:src="@{/img/user.png}" alt="">
         </div>
         
         <ul class="arrowDrop">
-            <li> <img src="../img/arrow.png" class="arrow"> 
+            <li> <img th:src="@{/img/arrow.png}" class="arrow">
                 <ul class="submenu">
                     <li><a href="#">Configuracion</a></li>
                     <li><a href="#">Perfil</a></li>
