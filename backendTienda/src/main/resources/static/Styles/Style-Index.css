@@ -308,6 +308,9 @@ background-color:#08A045;
     border-radius: 10px;
     border: 2px #222721 solid;
 }
+#tablaDatosC tr,#tablaDatosP tr,#tablaDatosV tr,#tablaDatosU tr,#tablaDatosD tr{
+background-color:white;
+}
 .cerrar{
     background-color: #ce1515;
 }
