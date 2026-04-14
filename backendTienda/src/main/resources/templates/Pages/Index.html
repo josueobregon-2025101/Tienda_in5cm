@@ -11,11 +11,11 @@
         <img th:src="@{/img/logo.png}" alt="logo" class="logo">
         <ul>
             <li><a th:href="@{/Index}">Inicio</a></li>
-            <li><a href="#">Clientes</a></li>
-            <li><a href="#">Ventas</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Usuarios</a></li>
-            <li><a href="#">Detalle venta</a></li>
+            <li><a href="#" onclick="mostrarVista('clientes')">Clientes</a></li>
+            <li><a href="#" onclick="mostrarVista('ventas')">Ventas</a></li>
+            <li><a href="#" onclick="mostrarVista('productos')">Productos</a></li>
+            <li><a href="#" onclick="mostrarVista('usuarios')">Usuarios</a></li>
+            <li><a href="#" onclick="mostrarVista('detalle')">Detalle venta</a></li>
         </ul>
         <a th:href="@{/}">
             <div class="imgContainer">
@@ -44,6 +44,176 @@
     </header>
     
     <div class="bannerContainer">
+
+        <div id="productos" class="vista">
+            <h2>Productos</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioP()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosP">
+
+                </tbody>
+            </table>
+            <div id="formularioP" style="display:none;">
+                <input type="text" id="nombreP" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarP()" class="cerrar">Cerrar</button>
+            </div>
+        </div>
+
+
+        <div id="clientes" class="vista">
+            <h2>Clientes</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioC()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosC">
+
+                </tbody>
+            </table>
+            <div id="formularioC" style="display:none;">
+                <input type="text" id="nombreC" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarC()" class="cerrar">Cerrar</button>
+            </div>
+        </div>
+
+
+        <div id="ventas" class="vista">
+            <h2>Ventas</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioV()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosV">
+
+                </tbody>
+            </table>
+            <div id="formularioV" style="display:none;">
+                <input type="text" id="nombreV" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarV()" class="cerrar">Cerrar</button>
+            </div>
+        </div>
+
+
+        <div id="usuarios" class="vista">
+            <h2>Usuarios</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioU()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosU">
+
+                </tbody>
+            </table>
+            <div id="formularioU" style="display:none;">
+                <input type="text" id="nombreU" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarU() " class="cerrar">Cerrar</button>
+            </div>
+        </div>
+
+        <div id="detalle" class="vista">
+            <h2>Detalle Ventas</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioD()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosD">
+
+                </tbody>
+            </table>
+            <div id="formularioD" style="display:none;">
+                <input type="text" id="nombreD" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarD()" class="cerrar">Cerrar</button>
+            </div>
+        </div>
     </div>
+    <script>
+        function mostrarVista(id) {
+            event.preventDefault(); // evita que recargue la página
+
+            let vistas = document.querySelectorAll('.vista');
+            vistas.forEach(v => v.classList.remove('activa'));
+
+            document.getElementById(id).classList.add('activa');
+        }
+        function mostrarFormularioP() {
+         document.getElementById("formularioP").style.display = "block";
+        }
+        function mostrarFormularioC() {
+         document.getElementById("formularioC").style.display = "block";
+        }
+        function mostrarFormularioV() {
+         document.getElementById("formularioV").style.display = "block";
+        }
+        function mostrarFormularioU() {
+         document.getElementById("formularioU").style.display = "block";
+        }
+        function mostrarFormularioD() {
+         document.getElementById("formularioD").style.display = "block";
+        }
+
+        function cerrarP(){
+        document.getElementById("formularioP").style.display = "none";
+        }
+        function cerrarC(){
+        document.getElementById("formularioC").style.display = "none";
+        }
+        function cerrarV(){
+        document.getElementById("formularioV").style.display = "none";
+        }
+        function cerrarU(){
+        document.getElementById("formularioU").style.display = "none";
+        }
+        function cerrarD(){
+        document.getElementById("formularioD").style.display = "none";
+        }
+
+    </script>
 </body>
 </html>
