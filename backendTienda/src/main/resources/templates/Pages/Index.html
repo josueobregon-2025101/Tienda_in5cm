@@ -60,7 +60,16 @@
                 </tr>
                 </thead>
                 <tbody id="tablaDatosP">
+                <tr th:each="u : ${productos}">
+                    <td th:text="${u.codigoProducto}"></td>
+                    <td th:text="${u.nombreProducto}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/' +${u.codigoProducto}}">
+                            <button>eliminar</button>
+                        </a>
+                    </td>
 
+                </tr>
                 </tbody>
             </table>
             <div id="formularioP" style="display:none;">
@@ -86,7 +95,16 @@
                 </tr>
                 </thead>
                 <tbody id="tablaDatosC">
+                <tr th:each="u : ${clientes}">
+                    <td th:text="${u.dpiCliente}"></td>
+                    <td th:text="${u.nombreCliente}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/' +${u.dpiCliente}}">
+                            <button>eliminar</button>
+                        </a>
+                    </td>
 
+                </tr>
                 </tbody>
             </table>
             <div id="formularioC" style="display:none;">
@@ -112,7 +130,16 @@
                 </tr>
                 </thead>
                 <tbody id="tablaDatosV">
+                <tr th:each="u : ${ventas}">
+                    <td th:text="${u.codigoVenta}"></td>
+                    <td th:text="${u.total}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/' +${u.codigoVenta}}">
+                            <button>eliminar</button>
+                        </a>
+                    </td>
 
+                </tr>
                 </tbody>
             </table>
             <div id="formularioV" style="display:none;">
@@ -138,7 +165,16 @@
                 </tr>
                 </thead>
                 <tbody id="tablaDatosU">
+                <tr th:each="u : ${usuarios}">
+                    <td th:text="${u.codigoUsuario}"></td>
+                    <td th:text="${u.username}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/' +${u.codigoUsuario}}">
+                            <button>eliminar</button>
+                        </a>
+                    </td>
 
+                </tr>
                 </tbody>
             </table>
             <div id="formularioU" style="display:none;">
@@ -163,7 +199,15 @@
                 </tr>
                 </thead>
                 <tbody id="tablaDatosD">
-
+                <tr th:each="u : ${detalle}">
+                    <td th:text="${u.codigoDetalleVenta}"></td>
+                    <td th:text="${u.cantidad}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/' +${u.codigoDetalleVenta}}">
+                            <button>eliminar</button>
+                        </a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div id="formularioD" style="display:none;">
