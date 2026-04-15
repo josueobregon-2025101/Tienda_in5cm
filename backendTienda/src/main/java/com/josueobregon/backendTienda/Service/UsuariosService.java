@@ -8,6 +8,9 @@ import java.util.List;
 
 @Service
 public interface UsuariosService {
+     Usuarios login(String username, String password);
+     Usuarios registrar(String usuario, String password);
+
      List<Usuarios> findAll();
      Usuarios findById(int id);
      Usuarios CreateUsuario(Usuarios usuario) throws RuntimeException;
