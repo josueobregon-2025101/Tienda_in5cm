@@ -110,16 +110,15 @@ header ul{
     background-color: #0c5c3b;
     padding: 10px;
     border-radius: 8px;
-}
-.arrowDrop:hover .submenu {
-    display: block;
     z-index:10;
 }
+
 .submenu li {
     position: relative;
     background-color: #1ecc1efb;
     width: 150px;
     border: 1px solid #222721;
+    z-index:10;
 }
 .submenu li a {
     
@@ -186,7 +185,7 @@ header ul{
 }
 .vista table tr{
 
-background-color:#08A045;
+background-color:#30da2a;
 }
 
 #formularioP {
@@ -310,6 +309,8 @@ background-color:#08A045;
 }
 #tablaDatosC tr,#tablaDatosP tr,#tablaDatosV tr,#tablaDatosU tr,#tablaDatosD tr{
 background-color:white;
+align-items: center;
+text-align: center;
 }
 .cerrar{
     background-color: #ce1515;
@@ -318,3 +319,8 @@ background-color:white;
     background-color: #7ade64;
 }
 
+.btnEliminar{
+    background-color: #de2525;
+    color: #f5f5f5;
+    border-radius: 5px;
+}
