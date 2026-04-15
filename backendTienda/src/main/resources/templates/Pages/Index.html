@@ -17,7 +17,7 @@
             <li><a href="#" onclick="mostrarVista('usuarios')">Usuarios</a></li>
             <li><a href="#" onclick="mostrarVista('detalle')">Detalle venta</a></li>
         </ul>
-        <a th:href="@{/}">
+        <a th:href="@{/log}">
             <div class="imgContainer">
                 <img th:src="@{/img/logout.png}" alt="logout" class="logout">
             </div>
@@ -27,11 +27,11 @@
     <header>
         <p>Menú</p>
         <div class="userContainer">
-            <img th:src="@{/img/user.png}" alt="">
+            <img th:src="${usuario.foto != null} ? @{'/img/' + ${usuario.foto}} : @{'/img/user.png'}" alt="">
         </div>
         
         <ul class="arrowDrop">
-            <li> <img th:src="@{/img/arrow.png}" class="arrow">
+            <li onclick="toggleMenu(this)"> <img th:src="@{/img/arrow.png}" class="arrow">
                 <ul class="submenu">
                     <li><a href="#">Configuracion</a></li>
                     <li><a href="#">Perfil</a></li>
@@ -64,8 +64,8 @@
                     <td th:text="${u.codigoProducto}"></td>
                     <td th:text="${u.nombreProducto}"></td>
                     <td>
-                        <a th:href="@{'/eliminar/' +${u.codigoProducto}}">
-                            <button>eliminar</button>
+                        <a th:href="@{'/eliminar/productos/' +${u.codigoProducto}}">
+                            <button class="btnEliminar">eliminar</button>
                         </a>
                     </td>
 
@@ -99,8 +99,8 @@
                     <td th:text="${u.dpiCliente}"></td>
                     <td th:text="${u.nombreCliente}"></td>
                     <td>
-                        <a th:href="@{'/eliminar/' +${u.dpiCliente}}">
-                            <button>eliminar</button>
+                        <a th:href="@{'/eliminar/clientes/' +${u.dpiCliente}}">
+                            <button class="btnEliminar">eliminar</button>
                         </a>
                     </td>
 
@@ -134,8 +134,8 @@
                     <td th:text="${u.codigoVenta}"></td>
                     <td th:text="${u.total}"></td>
                     <td>
-                        <a th:href="@{'/eliminar/' +${u.codigoVenta}}">
-                            <button>eliminar</button>
+                        <a th:href="@{'/eliminar/ventas/' +${u.codigoVenta}}">
+                            <button class="btnEliminar">eliminar</button>
                         </a>
                     </td>
 
@@ -169,8 +169,8 @@
                     <td th:text="${u.codigoUsuario}"></td>
                     <td th:text="${u.username}"></td>
                     <td>
-                        <a th:href="@{'/eliminar/' +${u.codigoUsuario}}">
-                            <button>eliminar</button>
+                        <a th:href="@{'/eliminar/usuarios/' +${u.codigoUsuario}}">
+                            <button class="btnEliminar">eliminar</button>
                         </a>
                     </td>
 
@@ -203,8 +203,8 @@
                     <td th:text="${u.codigoDetalleVenta}"></td>
                     <td th:text="${u.cantidad}"></td>
                     <td>
-                        <a th:href="@{'/eliminar/' +${u.codigoDetalleVenta}}">
-                            <button>eliminar</button>
+                        <a th:href="@{'/eliminar/detalle/' +${u.codigoDetalleVenta}}">
+                            <button class="btnEliminar">eliminar</button>
                         </a>
                     </td>
                 </tr>
@@ -257,6 +257,15 @@
         function cerrarD(){
         document.getElementById("formularioD").style.display = "none";
         }
+        function toggleMenu(element) {
+    let submenu = element.querySelector(".submenu");
+
+    if (submenu.style.display === "block") {
+        submenu.style.display = "none";
+    } else {
+        submenu.style.display = "block";
+    }
+}
 
     </script>
 </body>
