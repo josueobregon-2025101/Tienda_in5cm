@@ -17,6 +17,32 @@ public class UsuariosServiceImplement implements UsuariosService {
     }
 
     @Override
+    public Usuarios registrar(String username, String password) {
+
+        if (usuariosRepository.findByUsername(username) != null) {
+            return null;
+        }
+
+        Usuarios u = new Usuarios();
+        u.setUsername(username);
+        u.setPassword(password);
+
+        return usuariosRepository.save(u);
+    }
+
+    @Override
+    public Usuarios login(String username, String password) {
+
+        Usuarios u = usuariosRepository.findByUsername(username);
+
+        if (u != null && u.getPassword().equals(password)) {
+            return u;
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Usuarios> findAll() {
         return usuariosRepository.findAll();
     }
@@ -42,6 +68,7 @@ public class UsuariosServiceImplement implements UsuariosService {
             usuarioUpdate.setPassword(usuario.getPassword());
             usuarioUpdate.setEstado(usuario.getEstado());
             usuarioUpdate.setRol(usuario.getRol());
+            usuarioUpdate.setFoto(usuario.getFoto());
             return usuariosRepository.save(usuarioUpdate);
         }
         return null;
