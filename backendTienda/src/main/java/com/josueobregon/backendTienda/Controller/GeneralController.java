@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Base64;
+
 @Controller
 public class GeneralController {
     @Autowired
@@ -29,6 +31,11 @@ public class GeneralController {
     @GetMapping("/Index")
     public String index(HttpSession session,Model model) {
             Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogueado");
+        if (usuario.getFoto() != null) {
+            // Convertir bytes a Base64
+            String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
+            model.addAttribute("fotoBase64", fotoBase64);
+        }
             model.addAttribute("usuario", usuario);
 
         model.addAttribute("usuarios", usuariosService.findAll());
