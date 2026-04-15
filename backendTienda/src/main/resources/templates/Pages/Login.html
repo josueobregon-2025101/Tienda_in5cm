@@ -7,9 +7,13 @@
     <link rel="stylesheet" th:href="@{/Styles/Style-login.css}">
 </head>
 <body>
+    
     <div class="container">
+        <div th:if="${error}" class="error">
+        <span th:text="${error}"></span>
+    </div>
         <h2 >Registrarse</h2>
-        <form th:action="@{login}" method="post">
+        <form th:action="@{/login}" method="post">
             <input type="text" name="usuario" placeholder="Nombre de usuario" id="txtUser" required>
             <input type="password" name="password" placeholder="Contraseña" id="pswContra" required>
            <button class="ingresar" type="submit">Ingresar</button>
