@@ -70,3 +70,13 @@ input::placeholder{
     color: #ffffff;
     border: none;
 }
+.error {
+    background-color: #45cc1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.error span{
+    color: rgb(190, 24, 24);
+
+}
