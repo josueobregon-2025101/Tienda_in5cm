@@ -27,7 +27,9 @@
     <header>
         <p>Menú</p>
         <div class="userContainer">
-            <img th:src="${usuario.foto != null} ? @{'/img/' + ${usuario.foto}} : @{'/img/user.png'}" alt="">
+            <img th:src="${usuario.foto != null}
+            ? 'data:image/png;base64,' + ${fotoBase64}
+            : @{/img/user.png}">
         </div>
         
         <ul class="arrowDrop">
