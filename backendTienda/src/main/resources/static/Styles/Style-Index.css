@@ -183,9 +183,10 @@ header ul{
 .vista table, th, td {
   border: 1px solid black; 
 }
-.vista table tr{
+.vista table  thead tr{
 
-background-color:#30da2a;
+    background: linear-gradient(to right, #08A045, #66BB6A, #88D2AC);
+
 }
 
 #formularioP {
@@ -320,7 +321,23 @@ text-align: center;
 }
 
 .btnEliminar{
-    background-color: #de2525;
+    background-color: #3477ec;
     color: #f5f5f5;
     border-radius: 5px;
+}
+
+.bannerAside{
+    padding: 0%;
+    margin: 0;
+    height: 100%;
+    width: 20%;
+    right: 1%;
+    top: 0;
+    position: absolute;
+    align-items: center;
+}
+.imgAside{
+    height: 100%;
+    width: 100%;
+
 }
