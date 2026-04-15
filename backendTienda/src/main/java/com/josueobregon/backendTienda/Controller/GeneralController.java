@@ -31,19 +31,24 @@ public class GeneralController {
     @GetMapping("/Index")
     public String index(HttpSession session,Model model) {
             Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogueado");
-        if (usuario.getFoto() != null) {
-            // Convertir bytes a Base64
-            String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
-            model.addAttribute("fotoBase64", fotoBase64);
-        }
+            if (usuario == null){
+                return "redirect:/log";
+            }
+
+            if (usuario.getFoto() != null) {
+                // Convertir bytes a Base64
+                String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
+                model.addAttribute("fotoBase64", fotoBase64);
+            }
             model.addAttribute("usuario", usuario);
 
-        model.addAttribute("usuarios", usuariosService.findAll());
-        model.addAttribute("clientes", clientesService.findAll());
-        model.addAttribute("productos", productosService.findAll());
-        model.addAttribute("ventas", ventasService.findAll());
-        model.addAttribute("detalle",detalleVentaService.obtenerDetalle());
-        return "Pages/Index";
+            model.addAttribute("usuarios", usuariosService.findAll());
+            model.addAttribute("clientes", clientesService.findAll());
+            model.addAttribute("productos", productosService.findAll());
+            model.addAttribute("ventas", ventasService.findAll());
+            model.addAttribute("detalle",detalleVentaService.obtenerDetalle());
+            return "Pages/Index";
+
     }
     @GetMapping("/eliminar/usuarios/{id}")
     public String eliminarU(@PathVariable int id) {
