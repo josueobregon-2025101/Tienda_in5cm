@@ -26,8 +26,9 @@ public class Usuarios {
     @Column(name = "estado")
     private int estado;
 
-    @Column(name = "foto")
-    private String foto;
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] foto;
 
     public int getCodigoUsuario() {
         return codigoUsuario;
@@ -77,11 +78,11 @@ public class Usuarios {
         this.estado = estado;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 }
