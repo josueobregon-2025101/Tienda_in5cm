@@ -79,6 +79,9 @@
                 <button onclick="guardar()" class="save">Guardar</button>
                 <button onclick="cerrarP()" class="cerrar">Cerrar</button>
             </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
         </div>
 
 
@@ -91,8 +94,11 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>DPI</th>
                     <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>direccion</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -100,6 +106,9 @@
                 <tr th:each="u : ${clientes}">
                     <td th:text="${u.dpiCliente}"></td>
                     <td th:text="${u.nombreCliente}"></td>
+                    <td th:text="${u.apellidoCliente}"></td>
+                    <td th:text="${u.direccion}"></td>
+                    <td th:text="${u.estado}"></td>
                     <td>
                         <a th:href="@{'/eliminar/clientes/' +${u.dpiCliente}}">
                             <button class="btnEliminar">eliminar</button>
@@ -114,6 +123,9 @@
                 <button onclick="guardar()" class="save">Guardar</button>
                 <button onclick="cerrarC()" class="cerrar">Cerrar</button>
             </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
         </div>
 
 
@@ -126,15 +138,23 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
+                    <th>codigo</th>
+                    <th>fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>cliente-dpi</th>
+                    <th>codigo-Usuario</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody id="tablaDatosV">
                 <tr th:each="u : ${ventas}">
                     <td th:text="${u.codigoVenta}"></td>
+                    <td th:text="${u.fechaVenta}"></td>
                     <td th:text="${u.total}"></td>
+                    <td th:text="${u.estado}"></td>
+                    <td th:text="${u.Clientes_dpi_cliente}"></td>
+                    <td th:text="${u.Usuarios_codigo_usuario}"></td>
                     <td>
                         <a th:href="@{'/eliminar/ventas/' +${u.codigoVenta}}">
                             <button class="btnEliminar">eliminar</button>
@@ -149,6 +169,9 @@
                 <button onclick="guardar()" class="save">Guardar</button>
                 <button onclick="cerrarV()" class="cerrar">Cerrar</button>
             </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
         </div>
 
 
@@ -162,7 +185,10 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -170,6 +196,9 @@
                 <tr th:each="u : ${usuarios}">
                     <td th:text="${u.codigoUsuario}"></td>
                     <td th:text="${u.username}"></td>
+                    <td th:text="${u.email}"></td>
+                    <td th:text="${u.rol}"></td>
+                    <td th:text="${u.estado}"></td>
                     <td>
                         <a th:href="@{'/eliminar/usuarios/' +${u.codigoUsuario}}">
                             <button class="btnEliminar">eliminar</button>
@@ -183,6 +212,9 @@
                 <input type="text" id="nombreU" placeholder="Nombre">
                 <button onclick="guardar()" class="save">Guardar</button>
                 <button onclick="cerrarU() " class="cerrar">Cerrar</button>
+            </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
             </div>
         </div>
 
@@ -216,6 +248,9 @@
                 <input type="text" id="nombreD" placeholder="Nombre">
                 <button onclick="guardar()" class="save">Guardar</button>
                 <button onclick="cerrarD()" class="cerrar">Cerrar</button>
+            </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
             </div>
         </div>
     </div>
