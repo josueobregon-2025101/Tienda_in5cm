@@ -26,6 +26,9 @@ public class Usuarios {
     @Column(name = "estado")
     private int estado;
 
+    @Column(name = "foto")
+    private String foto;
+
     public int getCodigoUsuario() {
         return codigoUsuario;
     }
@@ -72,5 +75,13 @@ public class Usuarios {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
