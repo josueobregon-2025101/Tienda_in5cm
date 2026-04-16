@@ -29,12 +29,9 @@ public class GeneralController {
     //Index
 
     @GetMapping("/Index")
-    public String index(HttpSession session,Model model) {
-            Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogueado");
-            if (usuario == null){
-                return "redirect:/log";
-            }
-
+    public String index(HttpSession session, Model model) {
+        Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogueado");
+        if (usuario.getRol().equals("ADMIN")) {
             if (usuario.getFoto() != null) {
                 // Convertir bytes a Base64
                 String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
@@ -46,10 +43,15 @@ public class GeneralController {
             model.addAttribute("clientes", clientesService.findAll());
             model.addAttribute("productos", productosService.findAll());
             model.addAttribute("ventas", ventasService.findAll());
-            model.addAttribute("detalle",detalleVentaService.obtenerDetalle());
+            model.addAttribute("detalle", detalleVentaService.obtenerDetalle());
             return "Pages/Index";
 
+        }else {
+            return  "redirect:/Index/user";
+        }
+
     }
+
     @GetMapping("/eliminar/usuarios/{id}")
     public String eliminarU(@PathVariable int id) {
         usuariosService.DeleteUsuario(id);
@@ -73,6 +75,7 @@ public class GeneralController {
         productosService.DeleteProducto(id);
         return "redirect:/Index";
     }
+
     @GetMapping("/eliminar/detalle/{id}")
     public String eliminarD(@PathVariable int id) {
         detalleVentaService.deleteDetalle(id);
@@ -81,20 +84,65 @@ public class GeneralController {
 
     //login
     @GetMapping("/log")
-    public String Login() {return "Pages/login";}
+    public String Login() {
+        return "Pages/login";
+    }
 
     @PostMapping("/login")
     public String validar(@RequestParam String usuario, @RequestParam String password,
-                        HttpSession session,Model model) {
-        Usuarios u = usuariosService.login(usuario,password);
+                          HttpSession session, Model model) {
+        Usuarios u = usuariosService.login(usuario, password);
 
         if (u != null) {
-            session.setAttribute("usuarioLogueado", u);
-            return "redirect:/Index";
+            if (u.getRol().equals("ADMIN")) {
+                session.setAttribute("usuarioLogueado", u);
+                return "redirect:/Index";
+            }else {
+                session.setAttribute("usuarioLogueado", u);
+                return "redirect:/Index/user";
+            }
+
         } else {
             model.addAttribute("error", "Usuario y contraseña incorrecta");
             return "Pages/login";
         }
     }
-}
 
+    @GetMapping("/Index/user")
+    public String indexUser(HttpSession session, Model model) {
+        Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogueado");
+        if (usuario == null) {
+            return "redirect:/log";
+        }
+        if (usuario.getRol().equals("ADMIN")) {
+            if (usuario.getFoto() != null) {
+                // Convertir bytes a Base64
+                String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
+                model.addAttribute("fotoBase64", fotoBase64);
+            }
+            model.addAttribute("usuario", usuario);
+
+            model.addAttribute("usuarios", usuariosService.findAll());
+            model.addAttribute("clientes", clientesService.findAll());
+            model.addAttribute("productos", productosService.findAll());
+            model.addAttribute("ventas", ventasService.findAll());
+            model.addAttribute("detalle", detalleVentaService.obtenerDetalle());
+            return "Pages/Index";
+
+        }else {
+            if (usuario.getFoto() != null) {
+                // Convertir bytes a Base64
+                String fotoBase64 = Base64.getEncoder().encodeToString(usuario.getFoto());
+                model.addAttribute("fotoBase64", fotoBase64);
+            }
+            model.addAttribute("usuario", usuario);
+
+            model.addAttribute("productos", productosService.findById(usuario.getCodigoUsuario()));
+            model.addAttribute("ventas", ventasService.findById(usuario.getCodigoUsuario()));
+            model.addAttribute("detalle", detalleVentaService.findById(usuario.getCodigoUsuario()));
+            return "Pages/Index-Usuario";
+        }
+
+
+    }
+}
