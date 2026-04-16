@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" th:href="@{/Styles/Style-Index-Usuario.css}">
+</head>
+<body>
+    <aside>
+        <img th:src="@{/img/logo.png}" alt="logo" class="logo">
+        <ul>
+            <li><a th:href="@{/Index}">Inicio</a></li>
+            <li><a href="#" onclick="mostrarVista('ventas')">Ventas</a></li>
+            <li><a href="#" onclick="mostrarVista('productos')">Productos</a></li>
+            <li><a href="#" onclick="mostrarVista('detalle')">Detalle venta</a></li>
+        </ul>
+        <a th:href="@{/log}">
+            <div class="imgContainer">
+                <img th:src="@{/img/logout.png}" alt="logout" class="logout">
+            </div>
+            <button>Cerrar Sesión</button>
+        </a>
+    </aside>
+    <header>
+        <p>Menú</p>
+        <div class="userContainer">
+            <img th:src="${usuario.foto != null}
+            ? 'data:image/png;base64,' + ${fotoBase64}
+            : @{/img/user.png}">
+        </div>
+        
+        <ul class="arrowDrop">
+            <li onclick="toggleMenu(this)"> <img th:src="@{/img/arrow.png}" class="arrow">
+                <ul class="submenu">
+                    <li><a href="#">Configuracion</a></li>
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Modo Oscuro</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </header>
+    
+    <div class="bannerContainer">
+
+        <div id="productos" class="vista">
+            <h2>Productos</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioP()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosP">
+                <tr th:each="u : ${productos}">
+                    <td th:text="${u.codigoProducto}"></td>
+                    <td th:text="${u.nombreProducto}"></td>
+                    <td th:text="${u.precio}"></td>
+                    <td th:text="${u.stock}"></td>
+                    <td th:text="${u.estado}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/productos/' +${u.codigoProducto}}">
+                            <button class="btnEliminar">eliminar</button>
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div id="formularioP" style="display:none;">
+                <input type="text" id="nombreP" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarP()" class="cerrar">Cerrar</button>
+            </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
+        </div>
+
+
+        <div id="ventas" class="vista">
+            <h2>Ventas</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioV()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>codigo</th>
+                    <th>fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>cliente-dpi</th>
+                    <th>codigo-Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosV">
+                <tr th:each="u : ${ventas}">
+                    <td th:text="${u.codigoVenta}"></td>
+                    <td th:text="${u.fechaVenta}"></td>
+                    <td th:text="${u.total}"></td>
+                    <td th:text="${u.estado}"></td>
+                    <td th:text="${u.Clientes_dpi_cliente}"></td>
+                    <td th:text="${u.Usuarios_codigo_usuario}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/ventas/' +${u.codigoVenta}}">
+                            <button class="btnEliminar">eliminar</button>
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div id="formularioV" style="display:none;">
+                <input type="text" id="nombreV" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarV()" class="cerrar">Cerrar</button>
+            </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
+        </div>
+
+
+        <div id="detalle" class="vista">
+            <h2>Detalle Ventas</h2>
+            <div class="acciones">
+                <button onclick="mostrarFormularioD()">+ Nuevo</button>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Codigo Producto</th>
+                    <th>Codigo Venta</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tablaDatosD">
+                <tr th:each="u : ${detalle}">
+                    <td th:text="${u.codigoDetalleVenta}"></td>
+                    <td th:text="${u.cantidad}"></td>
+                    <td th:text="${u.precioUnitario}"></td>
+                    <td th:text="${u.subtotal}"></td>
+                    <td th:text="${u.productosCodigoProducto}"></td>
+                    <td th:text="${u.ventasCodigoVenta}"></td>
+                    <td>
+                        <a th:href="@{'/eliminar/detalle/' +${u.codigoDetalleVenta}}">
+                            <button class="btnEliminar">eliminar</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="formularioD" style="display:none;">
+                <input type="text" id="nombreD" placeholder="Nombre">
+                <button onclick="guardar()" class="save">Guardar</button>
+                <button onclick="cerrarD()" class="cerrar">Cerrar</button>
+            </div>
+            <div class="bannerAside">
+                <img th:src="@{/img/BannerAside.png}" class="imgAside">
+            </div>
+        </div>
+    </div>
+    <script>
+        function mostrarVista(id) {
+            event.preventDefault(); // evita que recargue la página
+
+            let vistas = document.querySelectorAll('.vista');
+            vistas.forEach(v => v.classList.remove('activa'));
+
+            document.getElementById(id).classList.add('activa');
+        }
+        function mostrarFormularioP() {
+         document.getElementById("formularioP").style.display = "block";
+        }
+        function mostrarFormularioV() {
+         document.getElementById("formularioV").style.display = "block";
+        }
+        function mostrarFormularioD() {
+         document.getElementById("formularioD").style.display = "block";
+        }
+
+        function cerrarP(){
+        document.getElementById("formularioP").style.display = "none";
+        }
+        function cerrarV(){
+        document.getElementById("formularioV").style.display = "none";
+        }
+        function cerrarD(){
+        document.getElementById("formularioD").style.display = "none";
+        }
+        function toggleMenu(element) {
+    let submenu = element.querySelector(".submenu");
+
+    if (submenu.style.display === "block") {
+        submenu.style.display = "none";
+    } else {
+        submenu.style.display = "block";
+    }
+}
+
+    </script>
+</body>
+</html>
