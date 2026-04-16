@@ -58,6 +58,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -65,6 +68,9 @@
                 <tr th:each="u : ${productos}">
                     <td th:text="${u.codigoProducto}"></td>
                     <td th:text="${u.nombreProducto}"></td>
+                    <td th:text="${u.precio}"></td>
+                    <td th:text="${u.stock}"></td>
+                    <td th:text="${u.estado}"></td>
                     <td>
                         <a th:href="@{'/eliminar/productos/' +${u.codigoProducto}}">
                             <button class="btnEliminar">eliminar</button>
@@ -227,8 +233,12 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
+                    <th>Codigo</th>
+                    <th>cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Codigo Producto</th>
+                    <th>Codigo Venta</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -236,6 +246,10 @@
                 <tr th:each="u : ${detalle}">
                     <td th:text="${u.codigoDetalleVenta}"></td>
                     <td th:text="${u.cantidad}"></td>
+                    <td th:text="${u.precioUnitario}"></td>
+                    <td th:text="${u.subtotal}"></td>
+                    <td th:text="${u.productosCodigoProducto}"></td>
+                    <td th:text="${u.ventasCodigoVenta}"></td>
                     <td>
                         <a th:href="@{'/eliminar/detalle/' +${u.codigoDetalleVenta}}">
                             <button class="btnEliminar">eliminar</button>
